@@ -1,35 +1,77 @@
 version: "3.8"
+
 services:
   postgres:
     image: postgres:15
+    container_name: cms_postgres
     restart: always
     environment:
+      POSTGRES_DB: directus
       POSTGRES_USER: directus
       POSTGRES_PASSWORD: directus
-      POSTGRES_DB: directus
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      - cms_network
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U directus" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   directus:
-    image: directus/directus:latest
+    image: directus/directus:10.8.3
+    container_name: cms_directus
     restart: always
     ports:
       - "8055:8055"
     environment:
-      KEY: "supersecretkey"
-      SECRET: "supersecretsecret"
-      ADMIN_EMAIL: "admin@example.com"
-      ADMIN_PASSWORD: "password"
-      DB_CLIENT: "pg"
-      DB_HOST: "postgres"
-      DB_PORT: "5432"
-      DB_DATABASE: "directus"
-      DB_USER: "directus"
-      DB_PASSWORD: "directus"
+      KEY: "D74BF66EBAC3F227BA2F52ECDB8B"
+      SECRET: "pYgBYwamS22cwVt2eIignYAitos3fR"
+      ADMIN_EMAIL: admin@darklake.fi
+      ADMIN_PASSWORD: admin
+      DB_CLIENT: pg
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_DATABASE: directus
+      DB_USER: directus
+      DB_PASSWORD: directus
+      CACHE_ENABLED: "true"
+      CACHE_STORE: redis
+      REDIS: redis://redis:6379
+      NODE_ENV: development
+      LOG_LEVEL: info
+      TELEMETRY: "false"
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    networks:
+      - cms_network
+    healthcheck:
+      test: [ "CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8055/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  redis:
+    image: redis:7-alpine
+    container_name: cms_redis
+    restart: always
+    networks:
+      - cms_network
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  cms_network:
+    driver: bridge
 
 volumes:
   postgres_data:
