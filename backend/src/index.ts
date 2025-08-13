@@ -1,12 +1,10 @@
+import 'dotenv/config'
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
-import dotenv from 'dotenv';
 import { poolRoutes } from './routes/pools';
 import { tokenRoutes } from './routes/tokens';
 import { walletRoutes } from './routes/wallets';
-
-dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
