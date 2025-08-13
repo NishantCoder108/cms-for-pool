@@ -152,72 +152,80 @@ GET /api/wallets/:id    # Get specific wallet
 ```bash
 # Test backend health
 curl http://localhost:3001/health
+```
 
-# Test pools API
+### pools API
 curl http://localhost:3001/api/pools
+```json
+[
+    {
+        "id": "4415777a-d727-42cc-8f94-a105e0a33bf1",
+        "Name": "JPool",
+        "Description": "High-yield staking with liquid JSOL, optional MEV",
+        "Chain": "SOL",
+        "Address": null,
+        "Pool_Type": "Liquid + Direct Staking",
+        "TVL": "8000004",
+        "APY": "7700000"
+    },
+    {
+        "id": "59ce182b-c031-4a59-ab14-99c14882ce18",
+        "Name": "DXDY-DXL Pool",
+        "Description": " Pool High liquidity pool for swapping DXDY and DXL on Solana.",
+        "Chain": "SOL",
+        "Address": "mSoLUSdC1234567890ExampleAddress",
+        "Pool_Type": "Liquidity Pool",
+        "TVL": "1500000",
+        "APY": "12200000"
+    },
+]
 
-# Test tokens API
+```
+
+
+###  tokens API
 curl http://localhost:3001/api/tokens
 
-# Test wallets API
+```json
+
+[
+    {
+        "id": "592e85e4-a722-40e8-8475-c0658e3d84be",
+        "Name": "Darklake Staking Token",
+        "Symbol": "DLST",
+        "Address": "0xabcdef1234567890abcdef1234567890abcdef12",
+        "Chain": "ETH",
+        "Decimals": 9,
+        "Logo_URL": "https://beta.darklake.fi/image/dlst.png",
+        "Website": "https://beta.darklake.fi"
+    }
+]
+
+```
+
+
+### wallets API
 curl http://localhost:3001/api/wallets
+
+```json
+  {
+        "id": "951b7755-277e-47c8-abc1-98b584bd47bd",
+        "Name": "Marketing & Partnerships",
+        "Address": "0xabcdef1234567890abcdef1234567890abcdef34",
+        "Chain": "ETH",
+        "Description": "Wallet for marketing expenses and partnership payments",
+        "Wallet_Type": "Operations",
+        "Contract_Balance": 75000,
+        "tags": [
+            "low-risk",
+            "ethereum"
+        ]
+    }
+
 ```
 
-## ️ Database Schema
 
-### **Pools Collection**
-```typescript
-interface Pool {
-  id: string;
-  name: string;
-  description: string;
-  chain: string;
-  address: string;
-  pool_type: string;
-  tvl: number;
-  apy: number;
-  tags: string[];
-  status: string;
-  sort: number;
-  created_on: string;
-  updated_on: string;
-}
-```
 
-### **Custom Tokens Collection**
-```typescript
-interface CustomToken {
-  id: string;
-  name: string;
-  symbol: string;
-  address: string;
-  chain: string;
-  decimals: number;
-  logo_url: string;
-  website: string;
-  tags: string[];
-  status: string;
-  created_on: string;
-  updated_on: string;
-}
-```
-
-### **Wallets Collection**
-```typescript
-interface Wallet {
-  id: string;
-  name: string;
-  address: string;
-  chain: string;
-  description: string;
-  wallet_type: string;
-  balance: number;
-  tags: string[];
-  status: string;
-  created_on: string;
-  updated_on: string;
-}
-```
 
 ## 🔐 Authentication
 
@@ -278,24 +286,6 @@ docker-compose down
 npm run dev
 ```
 
-### **Production** (Future)
-- Deploy containers to cloud (AWS, GCP, Azure)
-- Use managed PostgreSQL/Redis
-- Set up CI/CD pipeline
-- Configure domain and SSL
-
-## 🧪 Testing & Quality
-
-### **Code Quality**
-- **TypeScript** for type safety
-- **ESLint** for code standards
-- **Prettier** for formatting
-- **EditorConfig** for consistency
-
-### **API Testing**
-- **Postman** for endpoint testing
-- **Curl** for command-line testing
-- **Health checks** for monitoring
 
 ## 🤝 Contributing
 
@@ -332,6 +322,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 
 ---
-
-                   **Built with ❤️ by the Nishant**
+Built with ❤️ by the Nishant
 
