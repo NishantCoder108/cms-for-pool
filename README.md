@@ -1,4 +1,4 @@
-# 🏊‍♂️ Darklake CMS - Pool & Token Management System
+# CMS for Pool & Token Management System
 
 A modern, containerized Content Management System (CMS) for managing pools, custom tokens, and wallets with a robust backend API.
 
@@ -77,7 +77,7 @@ A modern, containerized Content Management System (CMS) for managing pools, cust
 
 ### 1. **Clone the Repository**
 ```bash
-git clone <repo-url>
+git clone https://github.com/NishantCoder108/cms-for-pool
 cd cms-for-pool
 ```
 
@@ -300,27 +300,6 @@ npm run dev
 - Use consistent formatting
 - Add proper error handling
 - Include API documentation
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🆘 Support
-
-### **Common Issues**
-- **Port conflicts**: Check if ports 8055, 3001, 5432 are available
-- **Authentication errors**: Verify admin credentials in .env
-- **Database connection**: Ensure PostgreSQL container is running
-
-### **Getting Help**
-- Check Docker logs: `docker-compose logs`
-- Verify service status: `docker ps`
-- Test API endpoints with Postman
-- Review environment variables
-
-
-
-
 ---
 Built with ❤️ by the Nishant
 
