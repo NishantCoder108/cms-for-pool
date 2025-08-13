@@ -12,7 +12,7 @@ A modern, containerized Content Management System (CMS) for managing pools, cust
 - **🛡️ Security First** - Helmet middleware and CORS protection
 
 ## ��️ Architecture
-
+```
 
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
 │   Directus CMS  │    │  Backend API    │    │   Frontend      │
@@ -24,7 +24,7 @@ A modern, containerized Content Management System (CMS) for managing pools, cust
 │   PostgreSQL    │    │   Redis Cache   │    │   React App     │
 │   (Port 5432)   │    │   (Port 6379)   │    │   (Demo UI)     │
 └─────────────────┘    └─────────────────┘    └─────────────────┘
-
+```
 
 ## 🔄 Workflow
 
